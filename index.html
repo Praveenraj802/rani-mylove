@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rani ❤️ | A Special Surprise</title>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Floating Background Decoration -->
+    <div id="particles-container"></div>
+    <div id="hearts-container"></div>
+
+    <!-- Background Music: Rani Ninnu Chudangale (Cheliya Cheliya) -->
+    <audio id="bg-music" loop>
+        <source src="assets/music/song.mp3" type="audio/mpeg">
+        <source src="assets/music/song.m4a" type="audio/mp4">
+        <source src="assets/music/song.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Floating Music Control Button -->
+    <div id="music-btn" onclick="toggleMusic()" title="Play / Pause Music">
+        <span id="music-icon">🎵</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-page">
+        <header class="title-container">
+            <h1 class="main-title">Happy Birthday Rani ❤️</h1>
+            <p class="subtitle">A collection of special moments just for you 🎂</p>
+        </header>
+
+        <section class="gift-grid">
+            <!-- Card 1: Surprise Gift (Parents) -->
+            <div class="gift-card" id="card-parents" onclick="openSlideshow('parents')">
+                <div class="card-glass">
+                    <div class="card-icon">🎁</div>
+                    <h2 class="card-title">Surprise Gift</h2>
+                    <p class="card-desc">Honoring those who mean the most</p>
+                    <div class="view-btn">Open My Hearts 🤍</div>
+                </div>
+            </div>
+
+            <!-- Card 2: My Love (Rani) -->
+            <div class="gift-card" id="card-love" onclick="openSlideshow('rani')">
+                <div class="card-glass">
+                    <div class="card-icon">❤️</div>
+                    <h2 class="card-title">My Love</h2>
+                    <p class="card-desc">The beautiful Rani in every moment</p>
+                    <div class="view-btn">View My World 🌎</div>
+                </div>
+            </div>
+
+            <!-- Card 3: Sweet Gift (Teddy Bears) -->
+            <div class="gift-card" id="card-sweets" onclick="openSlideshow('teadys')">
+                <div class="card-glass">
+                    <div class="card-icon">🧸</div>
+                    <h2 class="card-title">Sweet Gift</h2>
+                    <p class="card-desc">Something cute for someone special</p>
+                    <div class="view-btn">Explore Sweets 🍭</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Made with ❤️ by Praveen for Rani</p>
+        </footer>
+    </main>
+
+    <!-- Modal Overlay for Slideshows -->
+    <div id="slideshow-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="close-btn" onclick="closeSlideshow()">&times;</div>
+            
+            <div class="slideshow-content">
+                <div class="slides-wrapper" id="slides-wrapper">
+                    <!-- Slides will be injected by JavaScript -->
+                </div>
+                
+                <!-- Slide Text -->
+                <div class="slide-caption" id="slide-caption"></div>
+                
+                <!-- Controls -->
+                <button class="nav-btn prev" onclick="prevSlide()">&#10094;</button>
+                <button class="nav-btn next" onclick="nextSlide()">&#10095;</button>
+            </div>
+            
+            <!-- Slideshow Progress -->
+            <div class="dots-container" id="dots-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Music must be started by user interaction (browser policy)
+        let musicStarted = false;
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            const btn = document.getElementById('music-btn');
+            if (music.paused) {
+                music.play();
+                icon.textContent = '🎵';
+                btn.classList.add('playing');
+            } else {
+                music.pause();
+                icon.textContent = '🔇';
+                btn.classList.remove('playing');
+            }
+        }
+        // Auto-play on first user interaction with the page
+        document.addEventListener('click', function startMusic() {
+            const music = document.getElementById('bg-music');
+            if (!musicStarted && music.paused) {
+                music.play().then(() => {
+                    musicStarted = true;
+                    document.getElementById('music-btn').classList.add('playing');
+                }).catch(() => {});
+            }
+        }, { once: false });
+    </script>
+</body>
+</html>
